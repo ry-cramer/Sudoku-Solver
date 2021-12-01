@@ -1,13 +1,3 @@
-board = [[4, 3, 8, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 0, 0, 7],
-    [0, 0, 5, 0, 0, 0, 0, 2, 1],
-    [0, 0, 0, 8, 3, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 3, 0],
-    [5, 0, 0, 4, 0, 0, 0, 8, 0],
-    [0, 0, 0, 0, 0, 2, 6, 0, 9],
-    [0, 4, 0, 0, 0, 5, 0, 0, 0],
-    [6, 0, 0, 0, 1, 0, 0, 0, 0]]
-
 def solve(board):
     '''
     Parameters:
@@ -117,7 +107,38 @@ def print_board(board):
         print_list.clear()
         print_string = ''
 
-print_board(board)
-solve(board)
-print('_______________________________\n')
-print_board(board)
+def main():
+    run = True
+    while run:
+        board = []
+        sample_board = input('Do you want to use the sample board, or input your own?(sb/io): ')
+        if sample_board == 'io':
+            for i in range(9):
+                line = input('Please write the next line of your sudoku board. Don\'t include spaces, and use "0" to indicate an empty square: ')
+                line_map = map(int, line)
+                line_list = list(line_map)
+                board.append(line_list)
+            print_board(board)
+            right_board = input('Is the board correct?(y/n) ')
+            if right_board == 'n':
+                continue
+        else:
+            board = [[4, 3, 8, 0, 0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 0, 7],
+                [0, 0, 5, 0, 0, 0, 0, 2, 1],
+                [0, 0, 0, 8, 3, 0, 1, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 3, 0],
+                [5, 0, 0, 4, 0, 0, 0, 8, 0],
+                [0, 0, 0, 0, 0, 2, 6, 0, 9],
+                [0, 4, 0, 0, 0, 5, 0, 0, 0],
+                [6, 0, 0, 0, 1, 0, 0, 0, 0]]
+            print_board(board)
+        solve(board)
+        print('_______________________________\n')
+        print_board(board)
+        keep_running = input('Press enter to input a new board, or write "q" to quit.\n')
+        if keep_running == 'q':
+            break
+        
+if __name__ == "__main__":
+    main()
